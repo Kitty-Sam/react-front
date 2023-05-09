@@ -1,0 +1,16 @@
+.input {
+    padding: 10px 15px;
+    font-weight: 400;
+    font-size: 1.6em;
+    border-radius: 5px;
+    outline: none;
+}
+
+
+.input-s {
+    width: 25%;
+}
+
+.input-m {
+    width: 70%;
+}

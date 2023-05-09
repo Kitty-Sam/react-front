@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import styles from './App.module.css';
+import { Header } from './components/shared/Header';
+import { Clients } from './components/Clients';
+import { AdditionalPanel } from './components/AdditionalPanel';
+import { useDispatch } from 'react-redux';
+import { fetchAllClientsAction } from './store/sagas/sagasActions/actions/fetchAllClients';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchAllClientsAction());
+    }, []);
+
+    return (
+        <div className={styles.app}>
+            <Header />
+            <div className={styles.main}>
+                <AdditionalPanel />
+                <Clients />
+            </div>
+        </div>
+    );
 }
 
 export default App;

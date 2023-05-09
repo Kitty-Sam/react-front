@@ -1,0 +1,51 @@
+.button {
+    padding:10px 15px;
+    background-color: #188CFB;
+    color: white;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.icon {
+    margin-right: 5px;
+}
+
+
+.ordinaryButton {
+    width: 70%;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.button-primary {
+    background-color: #188CFB;
+    color: white;
+}
+
+.button-primary:disabled {
+    background-color: #cccccc;
+    color: #666666;
+}
+
+.button-secondary {
+   background-color: white;
+    color: #313131
+}
+
+.button-secondary:disabled {
+    background-color: #cccccc;
+    color: #666666;
+}

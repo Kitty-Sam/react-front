@@ -1,0 +1,36 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 1280px;
+    background-color: white;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    width: 193px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #188CFB;
+    height: 60px;
+    color: white;
+    margin-right: 40px;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.buttonBlock {
+    margin-right: 40px;
+}
+
+.text {
+    font-size: 2em;
+    font-weight: 400;
+}

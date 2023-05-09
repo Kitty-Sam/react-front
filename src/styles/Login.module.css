@@ -1,0 +1,47 @@
+.closeBlock {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+}
+
+.formBlock {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 400px;
+    margin: 20px;
+}
+
+.buttonsBlock {
+    display: flex; flex-direction: row; width: 100%
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+}
+
+.avatarBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 400px;
+}
+
+
+.avatarMain {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

@@ -1,0 +1,23 @@
+.text-title {
+    font-size: 3.2em;
+    font-weight: 700;
+}
+
+.text-info {
+    font-size: 1.8em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.text-primary {
+    font-size: 1.6em;
+    font-weight: 400;
+    color: white;
+}
+
+.text-secondary {
+    font-size: 1.6em;
+    font-weight: 400;
+    color: #313131;
+}

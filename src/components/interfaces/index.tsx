@@ -18,6 +18,7 @@ export interface IButtonProps {
     onClick: () => void;
     color: string;
     disabled?: boolean;
+    type?: string;
 }
 
 export interface IButtonWithIconProps {
@@ -26,11 +27,12 @@ export interface IButtonWithIconProps {
 }
 
 export interface IInput {
-    value: string;
+    value?: string;
     onChange: (e: any) => void;
     placeholder: string;
     size: string;
     type: string;
+    name?: string;
 }
 
 export interface IText {

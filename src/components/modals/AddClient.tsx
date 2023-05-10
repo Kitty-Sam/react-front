@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../../store/actions/actions';
 import { Button } from '../shared/Button';
@@ -9,43 +9,29 @@ import styles from '../../styles/Login.module.css';
 import avatar from '../../assets/avatar.png';
 
 import { addNewClientAction } from '../../store/sagas/sagasActions/actions/addNewClient';
+import { addClientSchema } from '../../constants/loginSchema';
+import { Formik } from 'formik';
+export interface IAddNewClient {
+    name: string;
+    surname: string;
+    age: string;
+    phone: string;
+}
 export const AddClient = () => {
-    const [name, setName] = useState('name');
-    const [surname, setSurname] = useState('surname');
-    const [phone, setPhone] = useState('11111');
-    const [age, setAge] = useState('12.02.1993');
-
-    const onChangeNameClick = (e: any) => {
-        setName(e.target.value);
-    };
-
-    const onChangeSurnameClick = (e: any) => {
-        setSurname(e.target.value);
-    };
-
-    const onChangeAgeClick = (e: any) => {
-        setAge(e.target.value);
-    };
-
-    const onChangePhoneClick = (e: any) => {
-        setPhone(e.target.value);
-    };
-
     const dispatch = useDispatch();
     const onCloseClick = () => {
         dispatch(setModal({ modal: null }));
     };
-    const onAddClientClick = () => {
+    const onAddClientClick = (values: IAddNewClient) => {
         try {
             const payload = {
-                name,
-                surname,
-                age,
-                phone,
+                name: values.name.trim(),
+                surname: values.surname.trim(),
+                age: values.age.trim(),
+                phone: values.phone.trim(),
             };
 
             dispatch(addNewClientAction(payload));
-
             dispatch(setModal({ modal: null }));
         } catch (e: any) {
             console.log('error', e.message);
@@ -58,37 +44,65 @@ export const AddClient = () => {
                 x
             </div>
             <div className={styles.avatarMain}>
-                <div className={styles.avatarBlock}>
-                    <Text type={'title'}>New client</Text>
-                    <img src={avatar} alt={'avatar'} className={styles.avatar} />
-                    <div className={styles.buttonsBlock}>
-                        <Button
-                            title="Save"
-                            onClick={onAddClientClick}
-                            color="primary"
-                            disabled={!name || !surname || !age || !phone}
-                        />
-                        <Button title="Close" onClick={onCloseClick} color="secondary" />
-                    </div>
-                </div>
-                <div className={styles.formBlock}>
-                    <Input value={name} onChange={onChangeNameClick} placeholder="enter name" size={'m'} type="text" />
-                    <Input
-                        value={surname}
-                        onChange={onChangeSurnameClick}
-                        placeholder="enter surname"
-                        size={'m'}
-                        type="text"
-                    />
-                    <Input value={age} onChange={onChangeAgeClick} placeholder="enter age" size={'m'} type="text" />
-                    <Input
-                        value={phone}
-                        onChange={onChangePhoneClick}
-                        placeholder="enter phone"
-                        size={'m'}
-                        type="text"
-                    />
-                </div>
+                <Formik
+                    initialValues={{ name: '', surname: '', phone: '', age: '' }}
+                    validationSchema={addClientSchema}
+                    onSubmit={onAddClientClick}
+                >
+                    {({ handleChange, handleSubmit, values, errors, touched }) => (
+                        <>
+                            <div className={styles.avatarBlock}>
+                                <Text type={'title'}>New client</Text>
+                                <img src={avatar} alt={'avatar'} className={styles.avatar} />
+                                <div className={styles.buttonsBlock}>
+                                    <Button
+                                        type="submit"
+                                        title="Save"
+                                        onClick={handleSubmit}
+                                        color="primary"
+                                        disabled={!values.name || !values.surname || !values.age || !values.phone}
+                                    />
+                                    <Button title="Close" onClick={onCloseClick} color="secondary" type="button" />
+                                </div>
+                            </div>
+
+                            <div className={styles.formBlock}>
+                                <Input
+                                    onChange={handleChange('name')}
+                                    placeholder="enter name"
+                                    size={'m'}
+                                    type="text"
+                                    name="name"
+                                />
+                                {errors.name && touched.name && errors.name}
+                                <Input
+                                    onChange={handleChange('surname')}
+                                    placeholder="enter surname"
+                                    size={'m'}
+                                    type="text"
+                                    name="surname"
+                                />
+                                {errors.surname && touched.surname && errors.surname}
+                                <Input
+                                    onChange={handleChange('age')}
+                                    placeholder="enter age"
+                                    size={'m'}
+                                    type="text"
+                                    name="age"
+                                />
+                                {errors.age && touched.age && errors.age}
+                                <Input
+                                    onChange={handleChange('phone')}
+                                    placeholder="enter phone"
+                                    size={'m'}
+                                    type="text"
+                                    name="phone"
+                                />
+                                {errors.phone && touched.phone && errors.phone}
+                            </div>
+                        </>
+                    )}
+                </Formik>
             </div>
         </div>
     );

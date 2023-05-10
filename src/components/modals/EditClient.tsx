@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../store/actions/actions';
 import { Button } from '../shared/Button';
@@ -17,24 +17,25 @@ export interface IEditClient {
 }
 export const EditClient: FC<IEditClient> = ({ id }) => {
     const client = useSelector(getCurrentClient);
+
     const [name, setName] = useState(client.name);
     const [surname, setSurname] = useState(client.surname);
     const [phone, setPhone] = useState(client.phone);
     const [age, setAge] = useState(client.age);
 
-    const onChangeNameClick = (e: any) => {
+    const onChangeNameClick = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
     };
 
-    const onChangeSurnameClick = (e: any) => {
+    const onChangeSurnameClick = (e: ChangeEvent<HTMLInputElement>) => {
         setSurname(e.target.value);
     };
 
-    const onChangeAgeClick = (e: any) => {
+    const onChangeAgeClick = (e: ChangeEvent<HTMLInputElement>) => {
         setAge(e.target.value);
     };
 
-    const onChangePhoneClick = (e: any) => {
+    const onChangePhoneClick = (e: ChangeEvent<HTMLInputElement>) => {
         setPhone(e.target.value);
     };
 

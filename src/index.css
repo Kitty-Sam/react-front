@@ -17,7 +17,7 @@ body {
   font-size: 10px;
 }
 
-input {
+input, button {
   -webkit-appearance: none;
 }
 

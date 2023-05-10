@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './App.module.css';
 import { Header } from './components/shared/Header';
 import { Clients } from './components/Clients';
@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { fetchAllClientsAction } from './store/sagas/sagasActions/actions/fetchAllClients';
 
 function App() {
+    const [search, setSearch] = useState('');
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -17,8 +18,8 @@ function App() {
         <div className={styles.app}>
             <Header />
             <div className={styles.main}>
-                <AdditionalPanel />
-                <Clients />
+                <AdditionalPanel setSearch={setSearch} search={search} />
+                <Clients search={search} />
             </div>
         </div>
     );

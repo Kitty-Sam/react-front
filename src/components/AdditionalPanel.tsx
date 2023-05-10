@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, FC, useTransition } from 'react';
 import styles from '../styles/AdditionalPanel.module.css';
 import { Input } from './shared/Input';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,11 +7,17 @@ import { setModal } from '../store/actions/actions';
 import { CustomModule } from './CustomModal';
 import { AddClient } from './modals/AddClient';
 
-export const AdditionalPanel = () => {
-    const [search, setSearch] = useState('');
+export interface IAdditionalPanel {
+    search: string;
+    setSearch: (value: string) => void;
+}
+export const AdditionalPanel: FC<IAdditionalPanel> = ({ setSearch, search }) => {
+    const [_isPending, startTransition] = useTransition();
 
     const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
+        startTransition(() => {
+            setSearch(e.target.value);
+        });
     };
     const dispatch = useDispatch();
 
@@ -31,20 +37,7 @@ export const AdditionalPanel = () => {
                 <option>location</option>
             </select>
             {isLogged && (
-                <button
-                    onClick={onAddClientClick}
-                    style={{
-                        position: 'absolute',
-                        right: -100,
-                        top: 50,
-                        width: 50,
-                        height: 50,
-                        borderRadius: 25,
-                        outline: 'none',
-                        backgroundColor: '#188CFB',
-                        color: 'white',
-                    }}
-                >
+                <button onClick={onAddClientClick} className={styles.roundButton}>
                     +
                 </button>
             )}

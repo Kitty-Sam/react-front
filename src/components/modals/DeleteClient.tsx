@@ -17,8 +17,12 @@ export const Delete: FC<IDelete> = ({ id }) => {
     };
 
     const onDeleteClick = () => {
-        dispatch(clearClientAction({ id }));
-        dispatch(setModal({ modal: null }));
+        try {
+            dispatch(clearClientAction({ id }));
+            dispatch(setModal({ modal: null }));
+        } catch (e: any) {
+            console.log('error', e.message);
+        }
     };
 
     return (

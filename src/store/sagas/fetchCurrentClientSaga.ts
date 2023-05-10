@@ -2,6 +2,8 @@ import axios from 'axios';
 import { FetchCurrentClient } from './sagasActions/actions/fetchCurrentClient';
 import { put } from '@redux-saga/core/effects';
 import { setCurrentClient } from '../actions/actions';
+import { toast } from 'react-toastify';
+import { errorOptions } from '../../constants/options';
 
 export function* fetchCurrentClientWorker({ payload }: FetchCurrentClient) {
     try {
@@ -22,5 +24,6 @@ export function* fetchCurrentClientWorker({ payload }: FetchCurrentClient) {
         yield put(setCurrentClient({ currentClient: data.client }));
     } catch (error: any) {
         console.warn(error);
+        yield toast.error('Something went wrong!', errorOptions);
     }
 }

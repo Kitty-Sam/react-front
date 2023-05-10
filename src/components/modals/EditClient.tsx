@@ -11,6 +11,7 @@ import avatar from '../../assets/avatar.png';
 import { getCurrentClient } from '../../store/selectors/userSelector';
 import { editClientAction } from '../../store/sagas/sagasActions/actions/editClient';
 import { clearClientAction } from '../../store/sagas/sagasActions/actions/clearClient';
+import { toast } from 'react-toastify';
 
 export interface IEditClient {
     id: string;
@@ -55,8 +56,10 @@ export const EditClient: FC<IEditClient> = ({ id }) => {
 
             dispatch(editClientAction(payload));
             dispatch(setModal({ modal: null }));
+            toast('Client was updated successfully');
         } catch (e: any) {
             console.log('error', e.message);
+            toast('Something went wrong');
         }
     };
 

@@ -9,8 +9,9 @@ import styles from '../../styles/Login.module.css';
 import avatar from '../../assets/avatar.png';
 
 import { addNewClientAction } from '../../store/sagas/sagasActions/actions/addNewClient';
-import { addClientSchema } from '../../constants/loginSchema';
+import { addClientSchema } from '../../constants/schemas';
 import { Formik } from 'formik';
+
 export interface IAddNewClient {
     name: string;
     surname: string;

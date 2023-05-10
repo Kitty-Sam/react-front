@@ -8,7 +8,7 @@ import { loginUserAction } from '../../store/sagas/sagasActions/actions/loginUse
 
 import styles from '../../styles/Login.module.css';
 import { Formik } from 'formik';
-import { loginSchema } from '../../constants/loginSchema';
+import { loginSchema } from '../../constants/schemas';
 
 export interface ILogin {
     email: string;

@@ -9,11 +9,7 @@ import { loginUserAction } from '../../store/sagas/sagasActions/actions/loginUse
 import styles from '../../styles/Login.module.css';
 import { Formik } from 'formik';
 import { loginSchema } from '../../constants/schemas';
-
-export interface ILogin {
-    email: string;
-    password: string;
-}
+import { ILogin } from '../interfaces';
 
 export const Login = () => {
     // const [email, setEmail] = useState('richbrains');
@@ -41,11 +37,7 @@ export const Login = () => {
             <div className={styles.closeBlock} onClick={onCloseClick}>
                 x
             </div>
-            <Formik
-                initialValues={{ email: 'richbrains', password: 'richbrains_test' }}
-                validationSchema={loginSchema}
-                onSubmit={onLoginClick}
-            >
+            <Formik initialValues={{ email: '', password: '' }} validationSchema={loginSchema} onSubmit={onLoginClick}>
                 {({ handleChange, handleSubmit, values, errors, touched }) => (
                     <form className={styles.formBlock}>
                         <Text type={'title'}>Sign in</Text>

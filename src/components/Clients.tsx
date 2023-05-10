@@ -1,19 +1,17 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from '../styles/Clients.module.css';
-import avatar from '../assets/avatar.png';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { getAllClients, getModal } from '../store/selectors/userSelector';
 import { checkTokenAction } from '../store/sagas/sagasActions/actions/checkToken';
-import { setModal } from '../store/actions/actions';
 import { CustomModule } from './CustomModal';
 import { Profile } from './modals/Profile';
 import { Delete } from './modals/DeleteClient';
 import { EditClient } from './modals/EditClient';
+import { sortClientsAction } from '../store/sagas/sagasActions/actions/sortClients';
+import { Client } from './Client';
+import { IClients } from './interfaces';
 
-export interface IClients {
-    search: string;
-}
-export const Clients: FC<IClients> = ({ search }) => {
+export const Clients: FC<IClients> = ({ search, sortType, selectedValue }) => {
     const [id, setId] = useState('');
     const clients = useSelector(getAllClients, shallowEqual);
     const modal = useSelector(getModal);
@@ -21,38 +19,19 @@ export const Clients: FC<IClients> = ({ search }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(sortClientsAction({ search, sortType, selectedValue, clients }));
+    }, [search, sortType, selectedValue]);
+
+    useEffect(() => {
         dispatch(checkTokenAction());
     }, []);
 
-    const onPickItemClick = (id: string) => async () => {
-        setId(id);
-        dispatch(setModal({ modal: 'profile' }));
-    };
-
     const listOfFilteredClients = clients
         .filter((client) => client.name.includes(search))
-        .map((client) => (
-            <div key={client.id + client.name} className={styles.client} onClick={onPickItemClick(client.id)}>
-                <img src={avatar} alt="avatar" className={styles.avatar} />
-                <p className={styles.name}>
-                    {client.name}
-                    {client.surname}
-                </p>
-                <p className={styles.text}>{client.phone}</p>
-                <p className={styles.age}>{client.age}</p>
-            </div>
-        ));
+        .map((client) => <Client key={client.id + client.name} client={client} id={id} setId={setId} />);
 
     const listOfClients = clients.map((client) => (
-        <div key={client.id + client.name} className={styles.client} onClick={onPickItemClick(client.id)}>
-            <img src={avatar} alt="avatar" className={styles.avatar} />
-            <p className={styles.name}>
-                {client.name}
-                {client.surname}
-            </p>
-            <p className={styles.text}>{client.phone}</p>
-            <p className={styles.age}>{client.age}</p>
-        </div>
+        <Client key={client.id + client.name} client={client} id={id} setId={setId} />
     ));
 
     return (

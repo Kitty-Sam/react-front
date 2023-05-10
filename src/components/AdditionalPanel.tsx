@@ -6,12 +6,24 @@ import { getIsLogged, getModal } from '../store/selectors/userSelector';
 import { setModal } from '../store/actions/actions';
 import { CustomModule } from './CustomModal';
 import { AddClient } from './modals/AddClient';
+import { Dropdown } from './shared/DropDawn';
 
 export interface IAdditionalPanel {
     search: string;
     setSearch: (value: string) => void;
+    selectedValue: string;
+    setSelectedValue: (value: string) => void;
+    sortType: string;
+    setSortType: (value: string) => void;
 }
-export const AdditionalPanel: FC<IAdditionalPanel> = ({ setSearch, search }) => {
+export const AdditionalPanel: FC<IAdditionalPanel> = ({
+    setSearch,
+    search,
+    sortType,
+    setSortType,
+    selectedValue,
+    setSelectedValue,
+}) => {
     const [_isPending, startTransition] = useTransition();
 
     const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,11 +43,12 @@ export const AdditionalPanel: FC<IAdditionalPanel> = ({ setSearch, search }) => 
     return (
         <div className={styles.wrapper}>
             <Input value={search} onChange={onChangeSearch} placeholder={'Type to search...'} size={'s'} type="text" />
-            <select className={styles.input}>
-                <option>name</option>
-                <option>age</option>
-                <option>location</option>
-            </select>
+            <Dropdown
+                setSelectedValue={setSelectedValue}
+                selectedValue={selectedValue}
+                setSortType={setSortType}
+                sortType={sortType}
+            />
             {isLogged && (
                 <button onClick={onAddClientClick} className={styles.roundButton}>
                     +

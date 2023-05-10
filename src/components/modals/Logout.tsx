@@ -7,7 +7,6 @@ import { Text } from '../shared/Text';
 
 import styles from '../../styles/Login.module.css';
 import { logoutUserAction } from '../../store/sagas/sagasActions/actions/logoutUser';
-import { toast } from 'react-toastify';
 
 export const Logout = () => {
     const dispatch = useDispatch();
@@ -19,10 +18,8 @@ export const Logout = () => {
         try {
             dispatch(setModal({ modal: null }));
             dispatch(logoutUserAction());
-            toast('You successfully logged out');
         } catch (e: any) {
             console.log('error', e.message);
-            toast('Something went wrong');
         }
     };
 

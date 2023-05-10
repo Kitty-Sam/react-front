@@ -11,13 +11,8 @@ import avatar from '../../assets/avatar.png';
 import { addNewClientAction } from '../../store/sagas/sagasActions/actions/addNewClient';
 import { addClientSchema } from '../../constants/schemas';
 import { Formik } from 'formik';
+import { IAddNewClient } from '../interfaces';
 
-export interface IAddNewClient {
-    name: string;
-    surname: string;
-    age: string;
-    phone: string;
-}
 export const AddClient = () => {
     const dispatch = useDispatch();
     const onCloseClick = () => {

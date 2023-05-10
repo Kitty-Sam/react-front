@@ -8,6 +8,7 @@ import {
     FETCH_CURRENT_CLIENT,
     LOGIN_USER,
     LOGOUT_USER,
+    SORT_CLIENTS,
 } from './sagasActions/types';
 import { fetchAllClientsWorker } from './fetchAllClientsSaga';
 import { loginUserWorker } from './loginUserSaga';
@@ -17,6 +18,7 @@ import { logoutUserWorker } from './logoutUserSaga';
 import { removeClientWorker } from './removeClientSaga';
 import { fetchCurrentClientWorker } from './fetchCurrentClientSaga';
 import { editClientWorker } from './editClientSaga';
+import { sortClientsWorker } from './sortClientsSaga';
 export function* watchClickSaga() {
     yield takeLatest(FETCH_ALL_CLIENTS, fetchAllClientsWorker);
     yield takeLatest(LOGIN_USER, loginUserWorker);
@@ -26,6 +28,7 @@ export function* watchClickSaga() {
     yield takeLatest(CLEAR_CLIENT, removeClientWorker);
     yield takeLatest(FETCH_CURRENT_CLIENT, fetchCurrentClientWorker);
     yield takeLatest(EDIT_CLIENT, editClientWorker);
+    yield takeLatest(SORT_CLIENTS, sortClientsWorker);
 }
 
 export default function* rootSaga() {

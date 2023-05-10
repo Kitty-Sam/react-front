@@ -11,3 +11,16 @@
     width: 70%;
     min-height: 100vh;
 }
+
+input {
+    all: unset;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+}
+
+select {
+    all: unset;
+}

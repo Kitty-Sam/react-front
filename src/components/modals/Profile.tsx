@@ -8,10 +8,7 @@ import stylesClient from '../../styles/Clients.module.css';
 import avatar from '../../assets/avatar.png';
 import { fetchCurrentClientAction } from '../../store/sagas/sagasActions/actions/fetchCurrentClient';
 import { getCurrentClient } from '../../store/selectors/userSelector';
-
-export interface IProfile {
-    id: string;
-}
+import { IProfile } from '../interfaces';
 
 export const Profile: FC<IProfile> = ({ id }) => {
     const client = useSelector(getCurrentClient);
@@ -40,13 +37,12 @@ export const Profile: FC<IProfile> = ({ id }) => {
             </div>
             <div className={styles.formBlock}>
                 <div className={styles.buttonsBlock}>
-                    <Button title={'Edit profile'} onClick={onEditClick} color={'secondary'} />
-                    <Button title={'Delete client'} onClick={onDeleteClick} color={'secondary'} />
+                    <Button title={'Edit profile'} onClick={onEditClick} color={'secondary'} icon={'edit'} />
+                    <Button title={'Delete client'} onClick={onDeleteClick} color={'secondary-error'} icon={'remove'} />
                 </div>
                 <img src={avatar} alt="avatar" className={stylesClient.avatar} />
                 <p className={stylesClient.name}>
-                    {client?.name}
-                    {client?.surname}
+                    {client?.name} {client?.surname}
                 </p>
                 <p className={stylesClient.text}>{client?.phone}</p>
                 <p className={stylesClient.age}>{client?.age}</p>

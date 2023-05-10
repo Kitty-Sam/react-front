@@ -1,0 +1,73 @@
+.dropDawnContainer {
+    border: 1px solid #ccc;
+    position: relative;
+    border-radius: 5px;
+    width: 220px;
+    background-color: white;
+    font-size: 1.6em;
+}
+
+.dropDownMenu {
+    position: absolute;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: auto;
+    max-height: 200px;
+    background-color: white;
+    font-size: 1em;
+}
+
+.dropDawnItem {
+    padding: 10px 5px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.dropDawnItem:hover {
+    background-color: lightblue;
+}
+
+.dropDawnInput {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.dropDawnItem.selected {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    background-color: #ccc;
+}
+
+.sortButton {
+    border: 1px solid #ccc;
+    padding: 5px;
+    width: 50%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.roundButton {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+

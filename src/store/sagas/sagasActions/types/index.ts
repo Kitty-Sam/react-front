@@ -6,3 +6,4 @@ export const CLEAR_CLIENT = 'CLEAR_CLIENT';
 export const CHECK_TOKEN = 'CHECK_TOKEN';
 export const FETCH_CURRENT_CLIENT = 'FETCH_CURRENT_CLIENT';
 export const EDIT_CLIENT = 'EDIT_CLIENT';
+export const SORT_CLIENTS = 'SORT_CLIENTS';

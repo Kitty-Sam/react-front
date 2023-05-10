@@ -6,10 +6,8 @@ import { Text } from '../shared/Text';
 
 import styles from '../../styles/Login.module.css';
 import { clearClientAction } from '../../store/sagas/sagasActions/actions/clearClient';
+import { IDelete } from '../interfaces';
 
-export interface IDelete {
-    id: string;
-}
 export const Delete: FC<IDelete> = ({ id }) => {
     const dispatch = useDispatch();
     const onCloseClick = () => {
@@ -33,7 +31,7 @@ export const Delete: FC<IDelete> = ({ id }) => {
             <div className={styles.formBlock}>
                 <Text type={'title'}>Delete</Text>
                 <Text type={'secondary'}>Are you sure you want to delete client?</Text>
-                <Button title="Yes, delete" onClick={onDeleteClick} color="primary" />
+                <Button title="Yes, delete" onClick={onDeleteClick} color="primary-error" />
                 <Button title="No, close" onClick={onCloseClick} color="secondary" />
             </div>
         </div>

@@ -8,7 +8,7 @@ npm install
 ## Launch
 
 ```bash
-npm run dev
+npm run start
 ```
 
 

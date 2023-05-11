@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../../store/actions/actions';
 import { Button } from '../shared/Button';
@@ -10,8 +10,13 @@ import styles from '../../styles/Login.module.css';
 import { Formik } from 'formik';
 import { loginSchema } from '../../constants/schemas';
 import { ILogin } from '../interfaces';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 export const Login = () => {
+    const [visible, setIsVisible] = useState(false);
+    const toggleVisibilityForPassword = () => {
+        setIsVisible(!visible);
+    };
     // const [email, setEmail] = useState('richbrains');
     // const [password, setPassword] = useState('richbrains_test');
 
@@ -53,9 +58,15 @@ export const Login = () => {
                             onChange={handleChange('password')}
                             placeholder="enter password"
                             size={'m'}
-                            type="password"
+                            type={visible ? 'text' : 'password'}
                             name="password"
                         />
+                        {visible ? (
+                            <FiEye onClick={toggleVisibilityForPassword} className={styles.eyeBlock} />
+                        ) : (
+                            <FiEyeOff onClick={toggleVisibilityForPassword} className={styles.eyeBlock} />
+                        )}
+
                         {errors.password && touched.password && errors.password}
                         <Button
                             type="submit"
